@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bookers</title>
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+</head>
+
+  <header class="navbar navbar-fixed-top navbar-inverse">
+   <div class="body">
+  	<div class="container">
+  	    <nav class="nav navbar-nav navbar-left">
+  	  	  <li>
+  	  	    <span class="glyphicon glyphicon-book title_logo">
+		      Bookers
+		    </span>
+		  </li>
+		</nav>
+	  <nav>
+	    <ul class="nav navbar-nav navbar-right">
+	     <% if user_signed_in? %>
+	  	  <li>
+	  	    <%= link_to user_path(current_user) do %>
+	  	      <i class="glyphicon glyphicon-home"></i> Home
+	  	    <% end %>
+	  	  </li>
+	  	  <li>
+	  	  	<%= link_to users_path do %>
+	  	      <i class="glyphicon glyphicon-user"> Users</i>
+	  	    <% end %>
+	  	  </li>
+	  	  <li>
+	  	  	<%= link_to posts_path do %>
+		  	    <i class="glyphicon glyphicon-book"> Books</i>
+	  	    <% end %>
+	  	  </li>
+	  	  <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="glyphicon glyphicon-log-out"></i> logout
+            <% end %>
+          </li>
+	  	 <% else %>
+	  	  <li>
+	  	  	<%= link_to root_path do %>
+	  	      <i class="glyphicon glyphicon-home"></i> Home
+	  	    <% end %>
+	  	  </li>
+	  	  <li>
+	  	  	<%= link_to about_path do %>
+	  	    <i class="glyphicon glyphicon-link"> About</i>
+	  	    <% end %>
+	  	  </li>
+	  	  <li>
+	  	  	<%= link_to new_user_registration_path do %>
+	  	      <i class="glyphicon glyphicon-edit"></i> sign up
+	  	    <% end %>
+	  	  </li>
+	  	  <li>
+	  	  	<%= link_to new_user_session_path do %>
+	  	      <i class="glyphicon glyphicon-log-in"></i> login
+	  	    <% end %>
+	  	  </li>
+	  	 <% end %>
+	    </ul>
+	  </nav>
+	</div>
+   </div>
+  </header>
+
+  <%= yield %>
+
+  <footer>
+   <div class="col-xs-3 col-xs-offset-9">
+     <p>CopyRight Infratop.inc</p>
+   </div>
+  </footer>
+</html>

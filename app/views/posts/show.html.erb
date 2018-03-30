@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <h2>User info</h2>
+       <table class="table">
+        <tbody>
+            <tr>
+              <th>
+                <%= attachment_image_tag @postf.user, :image, format: 'jpeg',fallback:"noimage.jpg", size: '100x100' %>
+              </th>
+            </tr>
+            <tr>
+              <th>name</th>
+              <th><%= @postf.user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th></th>
+            </tr>
+        </tbody>
+       </table>
+      <div class="row">
+      <% if @postf.user.id == current_user.id %>
+        <div class="row">
+          <%= link_to '', edit_user_path(@postf.user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+        </div>
+      <% end %>
+      </div>
+
+      <h2>New book</h2>
+        <%= form_for(@post) do |f| %>
+          <div class="row">
+            <h5>Title</h5>
+            <%= f.text_field :title, :size=>"40" %>
+          </div>
+          <div class="row">
+            <h5>Opinion</h5>
+            <%= f.text_area :body, :size=>"39" %>
+          </div>
+          <div class="row">
+            <%= f.submit 'Create Book',class: "btn btn-primary col-xs-12" %>
+        　</div>
+        <% end %>
+    </div>
+<div class="col-xs-9">
+<h2>Book detail</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<table class="table">
+  <tbody>
+      <tr>
+        <td>
+        <%= attachment_image_tag @postf.user, :image, format: 'jpeg',fallback:"noimage.jpg", size: '100x100' %>
+
+        </td>
+        <td>
+        	<%= @postf.title %>
+        </td>
+        <td>
+        	<%= @postf.body %>
+        </td>
+
+        <td>
+           <%=link_to 'Edit', edit_post_path(@postf), class: "btn-sm btn-success" %>
+        </td>
+        <td>
+          <%=link_to 'Destroy', post_path(@postf),method: :delete, class: "btn-sm btn-danger","data-confirm" => "本当に削除しますか？" %>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>

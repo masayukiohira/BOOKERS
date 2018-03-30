@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <h2>User info</h2>
+       <table class="table">
+        <tbody>
+            <tr>
+              <th>
+                <%= attachment_image_tag current_user, :image, format: 'jpeg',fallback:"noimage.jpg", size: '100x100' %>
+              </th>
+            </tr>
+            <tr>
+              <th>name</th>
+              <th><%= current_user.username %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th></th>
+            </tr>
+        </tbody>
+       </table>
+      <div class="row">
+        <%= link_to '', edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+      </div>
+
+      <h2>New book</h2>
+        <%= form_for(@post) do |f| %>
+          <div class="row">
+            <h5>Title</h5>
+            <%= f.text_field :title, :size=>"40" %>
+          </div>
+          <div class="row">
+            <h5>Opinion</h5>
+            <%= f.text_area :body, :size=>"39" %>
+          </div>
+
+          
+          <div class="row">
+            <%= f.submit 'Create Book',class: "btn btn-primary col-xs-12" %>
+        　</div>
+        　
+
+          <!--<div class="actions row">
+            <input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book">
+          </div>-->
+        <% end %>
+    </div>
+    <div class="col-xs-9">
+      <h2>Books</h2>
+
+      <table class="table">
+        <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td>
+                <%= attachment_image_tag post.user, :image, format: 'jpeg',fallback:"noimage.jpg", size: '100x100' %></td>
+              <td><%= link_to post.title,post_path(post) %></td>
+              <td><%= post.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
