@@ -29,6 +29,15 @@
 
       <h2>New book</h2>
         <%= form_for(@post) do |f| %>
+        <% if @post.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
           <div class="row">
             <h5>Title</h5>
             <%= f.text_field :title, :size=>"40" %>
@@ -66,13 +75,14 @@
         <td>
         	<%= @postf.body %>
         </td>
-
+       <% if @postf.user_id.to_i == current_user.id %>
         <td>
            <%=link_to 'Edit', edit_post_path(@postf), class: "btn-sm btn-success" %>
         </td>
         <td>
           <%=link_to 'Destroy', post_path(@postf),method: :delete, class: "btn-sm btn-danger","data-confirm" => "本当に削除しますか？" %>
         </td>
+      <% end %>
       </tr>
   </tbody>
 </table>

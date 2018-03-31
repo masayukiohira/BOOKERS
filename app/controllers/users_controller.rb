@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :authenticate_user!, only: [:index, :show, :edit]
 
   def index
 
@@ -30,8 +31,11 @@ class UsersController < ApplicationController
 
   def update
       @user = User.find(params[:id])
-      @user.update(user_params)
-      redirect_to user_path(@user.id)
+      if @user.update(user_params)
+        redirect_to user_path(@user.id)
+      else
+        render 'edit'
+      end
   end
 
   private

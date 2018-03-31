@@ -12,12 +12,12 @@
             </tr>
             <tr>
               <td>name</td>
-              <td><%= @user.name %></td>
+              <td><%= current_user.name %></td>
             </tr>
 
             <tr>
               <td>introduction</td>
-              <td><%= @user.introduction %></td>
+              <td><%= current_user.introduction %></td>
             </tr>
   		  </tbody>
   		 </table>
@@ -37,7 +37,7 @@
             <h5>Opinion</h5>
             <%= f.text_area :body, :size=>"39" %>
           </div>
-          <div class="row">            
+          <div class="row">
             <%= f.submit 'Create Book',class: "btn btn-primary col-xs-12" %>
         　</div>
         <% end %>

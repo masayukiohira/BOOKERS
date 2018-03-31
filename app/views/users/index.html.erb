@@ -6,9 +6,7 @@
 <% end %>
 
 
-
 <div class="container">
-  
   <div class="row">
     <div class="col-xs-3">
       <h2>User info</h2>
@@ -17,17 +15,16 @@
           <tr>
               <th>
                 <%= attachment_image_tag current_user, :image, format: 'jpeg',fallback:"noimage.jpg", size: '100x100' %>
-
               </th>
           </tr>
   	  	  <tr>
-  	  	      <th>name</th>
-  	  		    <th><%= current_user.username %></th>
+  	  	      <td>name</td>
+              <td><%= current_user.name %></td>
   	  		</tr>
   	  	  <tr>
-  	  		    <th>introduction</th>
-  	  		    <th></th>
-  	       </tr>
+  	  		    <td>introduction</td>
+              <td><%= current_user.introduction %></td>
+  	     　</tr>
   		  </tbody>
   		 </table>
       <div class="row">

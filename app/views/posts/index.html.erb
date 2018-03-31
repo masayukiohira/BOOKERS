@@ -10,12 +10,12 @@
               </th>
             </tr>
             <tr>
-              <th>name</th>
-              <th><%= current_user.username %></th>
+              <td>name</td>
+              <td><%= current_user.name %></td>
             </tr>
             <tr>
-              <th>introduction</th>
-              <th></th>
+              <td>introduction</td>
+              <td><%= current_user.introduction %></td>
             </tr>
         </tbody>
        </table>
@@ -24,6 +24,15 @@
       </div>
 
       <h2>New book</h2>
+      <% if @post.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
         <%= form_for(@post) do |f| %>
           <div class="row">
             <h5>Title</h5>
